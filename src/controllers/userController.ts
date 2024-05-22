@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { prisma } from '../server.js'
 import hashPassword from '../utils/hashPassword.js'
+import { validatePassword } from '../utils/validatePassword.js'
 
 // register User
 export const registerUser = async (req: Request, res: Response) => {
@@ -18,6 +19,12 @@ export const registerUser = async (req: Request, res: Response) => {
     })
     if (existingUser) {
       return res.status(400).json({ message: 'This email is already in use' })
+    }
+
+    try {
+      validatePassword(password)
+    } catch (error: any) {
+      return res.status(400).json({ message: error.message })
     }
 
     const hashedPassword = await hashPassword(password)
