@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import urlShortenerController from '../controllers/urlShortenerController.js'
+import urlShortenerControllers from '../controllers/urlShortenerControllers/index.js'
 
 const router = Router()
 
-router.get('/url', urlShortenerController)
+router.get('/url', urlShortenerControllers.getShortendUrl)
+router.post('/create', urlShortenerControllers.createShortenedUrl)
 
 export default router
