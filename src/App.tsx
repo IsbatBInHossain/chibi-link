@@ -32,7 +32,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <div className='min-h-screen bg-gray-50'>
-          <Toaster position='top-right' />
+          <Toaster position='top-left' />
           <Header />
           <Routes>
             <Route path='/' element={<HomePage />} />
